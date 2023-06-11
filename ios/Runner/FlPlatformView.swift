@@ -58,15 +58,11 @@ class FlPlatformView: NSObject, FlutterPlatformView, FlutterStreamHandler {
     }
     
     func createNativeView(view _view: UIView, binaryMessenger messenger: FlutterBinaryMessenger) {
-//        let button = UIButton()
-        // button.setTitle("iOs native button", for: .normal)
-        // button.addTarget(self, action: #selector(onClick(sender:)), for: .touchUpInside)
-        // button.backgroundColor = UIColor.blue
-        // button.frame = CGRect(x: 0, y: 0, width: 180, height: 48)
-        var correctOrIncorrect: String = "text"
-        let text = Text(correctOrIncorrect)
-        // _view.addSubview(button)
-        _view.addSubview(text)
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+        label.center = CGPoint(x: 100, y: 100)
+        label.textAlignment = .center
+        label.text = "I'm a test label"
+        _view.addSubview(label)
         
         let channel = FlutterMethodChannel(name: "CALL_METHOD", binaryMessenger: messenger)
         let eventChannel = FlutterEventChannel(name: "CALL_EVENTS", binaryMessenger: messenger)
@@ -79,9 +75,9 @@ class FlPlatformView: NSObject, FlutterPlatformView, FlutterStreamHandler {
                 result(FlutterMethodNotImplemented)
                 return
             }
-//            button.setTitle("button", for: .normal)
-//            let text = Text("Hamlet").font(.title)
-//            _view.addSubview(text)
+            guard let args = call.arguments as? [String : Any] else {return}
+            let labelText = args["text"] as! String
+            label.text = labelText
             result(Int.random(in: 1..<500))
         })
     }

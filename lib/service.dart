@@ -17,7 +17,7 @@ class PlatformService {
     try {
       await method.invokeMethod(
         'sendText',
-        {"text": 'text'},
+        {"text": text},
       );
     } on PlatformException catch (e) {
       print('Failed to send value: "${e.message}"');
