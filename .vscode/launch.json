@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "Current File (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart"
+        }
+    ]
+}
